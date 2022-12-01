@@ -1,5 +1,3 @@
-import { bool } from 'prop-types';
-
 const prop = {
   cardName: '',
   cardDescription: '',
@@ -10,7 +8,7 @@ const prop = {
   cardRare: '',
   cardTrunfo: false,
   hasTrunfo: false,
-  isSaveButtonDisabled: bool,
+  isSaveButtonDisabled: false,
   onInputChange: () => { console.log('oi'); },
   onSaveButtonClick: () => { console.log('tchau'); },
 };
