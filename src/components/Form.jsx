@@ -17,7 +17,25 @@ class Form extends Component {
       isSaveButtonDisabled,
       onInputChange,
       onSaveButtonClick,
+      allCard,
     } = this.props;
+    const any = allCard.some((card) => card.cardTrunfo === true);
+    const trunfo = (
+      <label htmlFor="cardTrunfo">
+        Super Trunfo
+        <input
+          id="cardTrunfo"
+          type="checkbox"
+          data-testid="trunfo-input"
+          checked={ cardTrunfo }
+          onChange={ onInputChange }
+        />
+      </label>);
+
+    const trunfoSpan = <span>Você já tem um Super Trunfo em seu baralho</span>;
+
+    const trunfoCheck = (any) ? trunfoSpan : trunfo;
+
     return (
       <div className="div-form">
         <form>
@@ -85,16 +103,7 @@ class Form extends Component {
               <option value="muito raro">muito raro</option>
             </select>
           </label>
-          <label htmlFor="cardTrunfo">
-            Super Trunfo
-            <input
-              id="cardTrunfo"
-              type="checkbox"
-              data-testid="trunfo-input"
-              checked={ cardTrunfo }
-              onChange={ onInputChange }
-            />
-          </label>
+          {trunfoCheck}
           <button
             type="submit"
             data-testid="save-button"
@@ -118,10 +127,13 @@ Form.propTypes = {
   cardImage: PropTypes.string.isRequired,
   cardRare: PropTypes.string.isRequired,
   cardTrunfo: PropTypes.bool.isRequired,
-  // hasTrunfo: PropTypes.bool.isRequired,
   isSaveButtonDisabled: PropTypes.bool.isRequired,
   onInputChange: PropTypes.func.isRequired,
   onSaveButtonClick: PropTypes.func.isRequired,
+  // hasTrunfo: PropTypes.bool.isRequired,
+  allCard: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.oneOfType(
+    [PropTypes.string, PropTypes.bool, PropTypes.func],
+  ))).isRequired,
 };
 
 export default Form;

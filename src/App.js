@@ -27,19 +27,19 @@ class App extends React.Component {
       cardAttr2: '0',
       cardAttr3: '0',
     });
-  }
+  };
 
   onSaveButtonClick = (event) => {
     event.preventDefault();
     const card = {
-      ...this.state
-    }
+      ...this.state,
+    };
     delete card.allCard;
     this.setState(({ allCard }) => ({
-      allCard: [...allCard, card]
+      allCard: [...allCard, card],
     }));
-    this.attState()
-  }
+    this.attState();
+  };
 
   validationFields = () => {
     const { cardName, cardDescription, cardAttr1,
@@ -66,7 +66,7 @@ class App extends React.Component {
   render() {
     const { cardName, cardDescription, cardAttr1,
       cardAttr2, cardAttr3, cardImage, cardRare, cardTrunfo,
-      isSaveButtonDisabled } = this.state;
+      isSaveButtonDisabled, allCard } = this.state;
     return (
       <div>
         <h1>Tryunfo</h1>
@@ -83,6 +83,7 @@ class App extends React.Component {
             isSaveButtonDisabled={ isSaveButtonDisabled }
             onInputChange={ this.onInputChange }
             onSaveButtonClick={ this.onSaveButtonClick }
+            allCard={ allCard }
           />
           <Card
             cardName={ cardName }
