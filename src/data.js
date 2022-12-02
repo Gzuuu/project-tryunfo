@@ -9,8 +9,6 @@ const prop = {
   cardTrunfo: false,
   hasTrunfo: false,
   isSaveButtonDisabled: false,
-  onInputChange: () => { console.log('oi'); },
-  onSaveButtonClick: () => { console.log('tchau'); },
 };
 
 export default prop;

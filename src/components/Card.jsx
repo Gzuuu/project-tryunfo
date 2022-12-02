@@ -3,8 +3,17 @@ import PropTypes from 'prop-types';
 
 class Card extends Component {
   render() {
-    const { cardName, cardDescription, cardAttr1,
-      cardAttr2, cardAttr3, cardImage, cardRare, cardTrunfo } = this.props;
+    const {
+      cardName,
+      cardDescription,
+      cardAttr1,
+      cardAttr2,
+      cardAttr3,
+      cardImage,
+      cardRare,
+      cardTrunfo,
+    } = this.props;
+
     const validator = (cardTrunfo)
       ? <h3 data-testid="trunfo-card">Super Trunfo</h3> : false;
     return (
