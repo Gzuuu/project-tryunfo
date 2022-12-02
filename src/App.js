@@ -9,6 +9,7 @@ class App extends React.Component {
     super();
     this.state = {
       ...prop,
+      allCard: [],
     };
   }
 
@@ -19,8 +20,25 @@ class App extends React.Component {
     }, this.validationFields);
   };
 
-  onSaveButtonClick() {
-    console.log('oi');
+  attState = () => {
+    this.setState({
+      ...prop,
+      cardAttr1: '0',
+      cardAttr2: '0',
+      cardAttr3: '0',
+    });
+  }
+
+  onSaveButtonClick = (event) => {
+    event.preventDefault();
+    const card = {
+      ...this.state
+    }
+    delete card.allCard;
+    this.setState(({ allCard }) => ({
+      allCard: [...allCard, card]
+    }));
+    this.attState()
   }
 
   validationFields = () => {
