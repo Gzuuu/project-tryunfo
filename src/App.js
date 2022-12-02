@@ -6,34 +6,44 @@ import './styles/app.css';
 
 class App extends React.Component {
   constructor() {
-    const { cardName, cardDescription, cardAttr1,
-      cardAttr2, cardAttr3, cardImage, cardRare, cardTrunfo,
-      isSaveButtonDisabled } = prop;
     super();
     this.state = {
-      cardName,
-      cardDescription,
-      cardAttr1,
-      cardAttr2,
-      cardAttr3,
-      cardImage,
-      cardRare,
-      cardTrunfo,
-      isSaveButtonDisabled,
+      ...prop,
     };
-    this.onInputChange = this.onInputChange.bind(this);
   }
 
-  onInputChange({ target }) {
+  onInputChange = ({ target }) => {
     const { id, value, type, checked } = target;
     this.setState({
       [id]: type === 'checkbox' ? checked : value,
-    });
-  }
+    }, this.validationFields);
+  };
 
   onSaveButtonClick() {
     console.log('oi');
   }
+
+  validationFields = () => {
+    const { cardName, cardDescription, cardAttr1,
+      cardAttr2, cardAttr3, cardImage, cardRare } = this.state;
+    const maxSingleAttr = 90;
+    const maxCalc = 210;
+
+    const att1check = cardAttr1 >= 0 && cardAttr1 <= maxSingleAttr;
+    const att2check = cardAttr2 >= 0 && cardAttr2 <= maxSingleAttr;
+    const att3check = cardAttr3 >= 0 && cardAttr3 <= maxSingleAttr;
+    const atkSum = Number(cardAttr1) + Number(cardAttr2) + Number(cardAttr3) <= maxCalc;
+    const validationName = cardName.length > 0;
+    const validationDescription = cardDescription.length > 0;
+    const validationImage = cardImage.length > 0;
+    const validationRare = cardRare.length > 0;
+
+    this.setState({
+      isSaveButtonDisabled: !(att1check && att2check && att3check
+        && atkSum && validationName && validationDescription
+        && validationImage && validationRare),
+    });
+  };
 
   render() {
     const { cardName, cardDescription, cardAttr1,

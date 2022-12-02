@@ -8,7 +8,7 @@ const prop = {
   cardRare: '',
   cardTrunfo: false,
   hasTrunfo: false,
-  isSaveButtonDisabled: false,
+  isSaveButtonDisabled: true,
 };
 
 export default prop;
