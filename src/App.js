@@ -3,6 +3,7 @@ import Card from './components/Card';
 import Form from './components/Form';
 import prop from './data';
 import './styles/app.css';
+import AllCards from './components/AllCards';
 
 class App extends React.Component {
   constructor() {
@@ -20,15 +21,6 @@ class App extends React.Component {
     }, this.validationFields);
   };
 
-  attState = () => {
-    this.setState({
-      ...prop,
-      cardAttr1: '0',
-      cardAttr2: '0',
-      cardAttr3: '0',
-    });
-  };
-
   onSaveButtonClick = (event) => {
     event.preventDefault();
     const card = {
@@ -37,8 +29,16 @@ class App extends React.Component {
     delete card.allCard;
     this.setState(({ allCard }) => ({
       allCard: [...allCard, card],
+      cardName: '',
+      cardDescription: '',
+      cardImage: '',
+      cardRare: '',
+      cardAttr1: '0',
+      cardAttr2: '0',
+      cardAttr3: '0',
+      hasTrunfo: card.cardTrunfo,
+      cardTrunfo: false,
     }));
-    this.attState();
   };
 
   validationFields = () => {
@@ -66,7 +66,7 @@ class App extends React.Component {
   render() {
     const { cardName, cardDescription, cardAttr1,
       cardAttr2, cardAttr3, cardImage, cardRare, cardTrunfo,
-      isSaveButtonDisabled, allCard } = this.state;
+      isSaveButtonDisabled, allCard, hasTrunfo } = this.state;
     return (
       <div>
         <h1>Tryunfo</h1>
@@ -83,7 +83,7 @@ class App extends React.Component {
             isSaveButtonDisabled={ isSaveButtonDisabled }
             onInputChange={ this.onInputChange }
             onSaveButtonClick={ this.onSaveButtonClick }
-            allCard={ allCard }
+            hasTrunfo={ hasTrunfo }
           />
           <Card
             cardName={ cardName }
@@ -96,6 +96,7 @@ class App extends React.Component {
             cardTrunfo={ cardTrunfo }
           />
         </div>
+        <AllCards cards={ allCard } />
       </div>
     );
   }
