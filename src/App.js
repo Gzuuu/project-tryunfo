@@ -13,6 +13,15 @@ class App extends React.Component {
       allCard: [],
     };
   }
+  deleteCard = (cardNameCompare) => {
+    const { allCard } = this.state;
+    this.setState((prev) => ({
+      ...prev,
+      allCard : allCard.filter((card ) => {
+        return card.cardName !== cardNameCompare
+      })
+    }))
+  };
 
   onInputChange = ({ target }) => {
     const { id, value, type, checked } = target;
@@ -96,7 +105,7 @@ class App extends React.Component {
             cardTrunfo={ cardTrunfo }
           />
         </div>
-        <AllCards cards={ allCard } />
+        <AllCards cards={ allCard } deleteCard={this.deleteCard} />
       </div>
     );
   }

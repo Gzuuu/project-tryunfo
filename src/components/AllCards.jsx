@@ -4,23 +4,23 @@ import Card from './Card';
 
 class AllCards extends Component {
   render() {
-    const { cards } = this.props;
+    const { cards, deleteCard } = this.props;
     return (
       <div>
-        {
-          cards.map((card, index) => {
-            const {
-              cardName,
-              cardDescription,
-              cardAttr1,
-              cardAttr2,
-              cardAttr3,
-              cardImage,
-              cardRare,
-              cardTrunfo,
-            } = card;
-            return (<Card
-              key={ index }
+        {cards.map((card, index) => {
+        const {
+          cardName,
+          cardDescription,
+          cardAttr1,
+          cardAttr2,
+          cardAttr3,
+          cardImage,
+          cardRare,
+          cardTrunfo,
+        } = card;
+        const eachCard = (
+          <div key={ index }>
+            <Card
               cardName={ cardName }
               cardDescription={ cardDescription }
               cardAttr1={ cardAttr1 }
@@ -29,9 +29,17 @@ class AllCards extends Component {
               cardImage={ cardImage }
               cardRare={ cardRare }
               cardTrunfo={ cardTrunfo }
-            />);
-          })
-        }
+            />
+            <button
+              type="button"
+              data-testid="delete-button"
+              onClick={() => deleteCard(cardName)}
+            >
+              Excluir
+            </button>
+          </div>);
+        return eachCard;
+      })}
       </div>
     );
   }
