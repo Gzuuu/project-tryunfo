@@ -13,14 +13,18 @@ class App extends React.Component {
       allCard: [],
     };
   }
-  deleteCard = (cardNameCompare) => {
+
+  deleteCard = (cardCompare) => {
+    console.log(cardCompare);
     const { allCard } = this.state;
     this.setState((prev) => ({
       ...prev,
-      allCard : allCard.filter((card ) => {
-        return card.cardName !== cardNameCompare
-      })
-    }))
+      hasTrunfo: prev.cardTrunfo,
+      allCard: allCard.filter((card) => card !== cardCompare),
+    }));
+    this.setState((prev) => ({
+      ...prev,
+    }));
   };
 
   onInputChange = ({ target }) => {
@@ -28,6 +32,11 @@ class App extends React.Component {
     this.setState({
       [id]: type === 'checkbox' ? checked : value,
     }, this.validationFields);
+  };
+
+  trunfoCheck = () => {
+    const { allCard } = this.state;
+    return allCard.some((card) => (card.hasTrunfo || card.cardTrunfo));
   };
 
   onSaveButtonClick = (event) => {
@@ -45,7 +54,7 @@ class App extends React.Component {
       cardAttr1: '0',
       cardAttr2: '0',
       cardAttr3: '0',
-      hasTrunfo: card.cardTrunfo,
+      hasTrunfo: (card.cardTrunfo || this.trunfoCheck()),
       cardTrunfo: false,
     }));
   };
@@ -105,7 +114,7 @@ class App extends React.Component {
             cardTrunfo={ cardTrunfo }
           />
         </div>
-        <AllCards cards={ allCard } deleteCard={this.deleteCard} />
+        <AllCards cards={ allCard } deleteCard={ this.deleteCard } />
       </div>
     );
   }

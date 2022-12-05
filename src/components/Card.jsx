@@ -15,7 +15,7 @@ class Card extends Component {
     } = this.props;
 
     const validator = (cardTrunfo)
-      ? <h3 data-testid="trunfo-card">Super Trunfo</h3> : false;
+      ? <h3 data-testid="trunfo-card">Super Trunfo</h3> : '';
     return (
       <div>
         <h1 data-testid="name-card">{cardName}</h1>
