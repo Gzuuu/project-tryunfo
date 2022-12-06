@@ -4,11 +4,14 @@ import Card from './Card';
 
 class AllCards extends Component {
   render() {
-    const { cards, deleteCard, cardFilter } = this.props;
+    const { cards, deleteCard, cardFilter, rarityFilter } = this.props;
     return (
       <div>
         {cards
           .filter((card) => card.cardName.includes(cardFilter))
+          .filter((card) => ((rarityFilter === 'todas')
+            ? card.cardRare !== rarityFilter
+            : card.cardRare === rarityFilter))
           .map((card, index) => {
             const {
               cardName,
@@ -53,6 +56,7 @@ AllCards.propTypes = {
   ))).isRequired,
   deleteCard: PropTypes.func.isRequired,
   cardFilter: PropTypes.string.isRequired,
+  rarityFilter: PropTypes.string.isRequired,
 };
 
 export default AllCards;

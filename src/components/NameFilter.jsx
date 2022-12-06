@@ -6,11 +6,11 @@ class NameFilter extends Component {
     const { cardFilter } = this.props;
     return (
       <div>
-        <label htmlFor="input-Name">
+        <label htmlFor="cardFilter">
           Nome da Carta
           <input
             type="text"
-            id="input-Name"
+            id="cardFilter"
             data-testid="name-filter"
             placeholder="Ex: Pikachu..."
             onChange={ cardFilter }

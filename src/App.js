@@ -5,6 +5,7 @@ import prop from './data';
 import './styles/app.css';
 import AllCards from './components/AllCards';
 import NameFilter from './components/NameFilter';
+import RarityFilter from './components/RarityFilter';
 
 class App extends React.Component {
   constructor() {
@@ -13,13 +14,14 @@ class App extends React.Component {
       ...prop,
       allCard: [],
       cardFilter: '',
+      cardRarity: '',
     };
   }
 
   cardFilter = ({ target }) => {
-    const { value } = target;
+    const { value, id } = target;
     this.setState(() => ({
-      cardFilter: value,
+      [id]: value,
     }));
   };
 
@@ -90,7 +92,8 @@ class App extends React.Component {
   render() {
     const { cardName, cardDescription, cardAttr1,
       cardAttr2, cardAttr3, cardImage, cardRare, cardTrunfo,
-      isSaveButtonDisabled, allCard, hasTrunfo, cardFilter } = this.state;
+      isSaveButtonDisabled, allCard, hasTrunfo, cardFilter,
+      cardRarity } = this.state;
     return (
       <div>
         <h1>Tryunfo</h1>
@@ -122,11 +125,13 @@ class App extends React.Component {
         </div>
         <div>
           <NameFilter cardFilter={ this.cardFilter } />
+          <RarityFilter cardFilter={ this.cardFilter } />
         </div>
         <AllCards
           cards={ allCard }
           deleteCard={ this.deleteCard }
           cardFilter={ cardFilter }
+          rarityFilter={ cardRarity }
         />
       </div>
     );
