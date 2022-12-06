@@ -4,6 +4,7 @@ import Form from './components/Form';
 import prop from './data';
 import './styles/app.css';
 import AllCards from './components/AllCards';
+import NameFilter from './components/NameFilter';
 
 class App extends React.Component {
   constructor() {
@@ -11,19 +12,14 @@ class App extends React.Component {
     this.state = {
       ...prop,
       allCard: [],
+      cardFilter: '',
     };
   }
 
-  deleteCard = (cardCompare) => {
-    console.log(cardCompare);
-    const { allCard } = this.state;
-    this.setState((prev) => ({
-      ...prev,
-      hasTrunfo: prev.cardTrunfo,
-      allCard: allCard.filter((card) => card !== cardCompare),
-    }));
-    this.setState((prev) => ({
-      ...prev,
+  cardFilter = ({ target }) => {
+    const { value } = target;
+    this.setState(() => ({
+      cardFilter: value,
     }));
   };
 
@@ -81,10 +77,20 @@ class App extends React.Component {
     });
   };
 
+  deleteCard = (cardCompare, index) => {
+    const { allCard } = this.state;
+    allCard.splice(index, 1);
+    this.setState((prev) => ({
+      ...prev,
+      hasTrunfo: allCard.some((card) => card.cardTrunfo),
+      allCard: prev.allCard.filter((card) => card !== cardCompare),
+    }));
+  };
+
   render() {
     const { cardName, cardDescription, cardAttr1,
       cardAttr2, cardAttr3, cardImage, cardRare, cardTrunfo,
-      isSaveButtonDisabled, allCard, hasTrunfo } = this.state;
+      isSaveButtonDisabled, allCard, hasTrunfo, cardFilter } = this.state;
     return (
       <div>
         <h1>Tryunfo</h1>
@@ -114,7 +120,14 @@ class App extends React.Component {
             cardTrunfo={ cardTrunfo }
           />
         </div>
-        <AllCards cards={ allCard } deleteCard={ this.deleteCard } />
+        <div>
+          <NameFilter cardFilter={ this.cardFilter } />
+        </div>
+        <AllCards
+          cards={ allCard }
+          deleteCard={ this.deleteCard }
+          cardFilter={ cardFilter }
+        />
       </div>
     );
   }
