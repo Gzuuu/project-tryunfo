@@ -6,6 +6,7 @@ import './styles/app.css';
 import AllCards from './components/AllCards';
 import NameFilter from './components/NameFilter';
 import RarityFilter from './components/RarityFilter';
+import TrunfoFilter from './components/TrunfoFilter';
 
 class App extends React.Component {
   constructor() {
@@ -14,14 +15,17 @@ class App extends React.Component {
       ...prop,
       allCard: [],
       cardFilter: '',
-      cardRarity: '',
+      cardRarity: 'todas',
+      trunfoCheck: false,
+      disabled: false,
     };
   }
 
   cardFilter = ({ target }) => {
-    const { value, id } = target;
+    const { id, value, type, checked } = target;
     this.setState(() => ({
-      [id]: value,
+      [id]: type === 'checkbox' ? checked : value,
+      disabled: type === 'checkbox' ? checked : false,
     }));
   };
 
@@ -93,7 +97,7 @@ class App extends React.Component {
     const { cardName, cardDescription, cardAttr1,
       cardAttr2, cardAttr3, cardImage, cardRare, cardTrunfo,
       isSaveButtonDisabled, allCard, hasTrunfo, cardFilter,
-      cardRarity } = this.state;
+      cardRarity, trunfoCheck, disabled } = this.state;
     return (
       <div>
         <h1>Tryunfo</h1>
@@ -124,14 +128,16 @@ class App extends React.Component {
           />
         </div>
         <div>
-          <NameFilter cardFilter={ this.cardFilter } />
-          <RarityFilter cardFilter={ this.cardFilter } />
+          <NameFilter cardFilter={ this.cardFilter } disabled={ disabled } />
+          <RarityFilter cardFilter={ this.cardFilter } disabled={ disabled } />
+          <TrunfoFilter cardFilter={ this.cardFilter } checked={ trunfoCheck } />
         </div>
         <AllCards
           cards={ allCard }
           deleteCard={ this.deleteCard }
           cardFilter={ cardFilter }
           rarityFilter={ cardRarity }
+          trunfoFilter={ trunfoCheck }
         />
       </div>
     );

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 class NameFilter extends Component {
   render() {
-    const { cardFilter } = this.props;
+    const { cardFilter, disabled } = this.props;
     return (
       <div>
         <label htmlFor="cardFilter">
@@ -14,6 +14,7 @@ class NameFilter extends Component {
             data-testid="name-filter"
             placeholder="Ex: Pikachu..."
             onChange={ cardFilter }
+            disabled={ disabled }
           />
         </label>
       </div>
@@ -23,6 +24,7 @@ class NameFilter extends Component {
 
 NameFilter.propTypes = {
   cardFilter: PropTypes.func.isRequired,
+  disabled: PropTypes.bool.isRequired,
 };
 
 export default NameFilter;

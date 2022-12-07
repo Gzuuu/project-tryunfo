@@ -4,7 +4,7 @@ import Card from './Card';
 
 class AllCards extends Component {
   render() {
-    const { cards, deleteCard, cardFilter, rarityFilter } = this.props;
+    const { cards, deleteCard, cardFilter, rarityFilter, trunfoFilter } = this.props;
     return (
       <div>
         {cards
@@ -12,6 +12,11 @@ class AllCards extends Component {
           .filter((card) => ((rarityFilter === 'todas')
             ? card.cardRare !== rarityFilter
             : card.cardRare === rarityFilter))
+          .filter((card) => {
+            const filtered = card.cardTrunfo === trunfoFilter;
+            if (trunfoFilter) return filtered;
+            return card;
+          })
           .map((card, index) => {
             const {
               cardName,
@@ -57,6 +62,7 @@ AllCards.propTypes = {
   deleteCard: PropTypes.func.isRequired,
   cardFilter: PropTypes.string.isRequired,
   rarityFilter: PropTypes.string.isRequired,
+  trunfoFilter: PropTypes.bool.isRequired,
 };
 
 export default AllCards;
