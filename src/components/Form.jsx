@@ -30,8 +30,9 @@ class Form extends Component {
             testid="name-input"
             value={ cardName }
             onChange={ onInputChange }
+            className="form-name"
           />
-          <label htmlFor="description">
+          <label htmlFor="description" className="descript-label">
             Descrição
             <textarea
               id="cardDescription"
@@ -49,6 +50,7 @@ class Form extends Component {
             testid="attr1-input"
             value={ cardAttr1 }
             onChange={ onInputChange }
+            className="attr1"
           />
           <Input
             id="cardAttr2"
@@ -57,6 +59,7 @@ class Form extends Component {
             testid="attr2-input"
             value={ cardAttr2 }
             onChange={ onInputChange }
+            className="attr1"
           />
           <Input
             id="cardAttr3"
@@ -65,6 +68,7 @@ class Form extends Component {
             testid="attr3-input"
             value={ cardAttr3 }
             onChange={ onInputChange }
+            className="attr1"
           />
           <Input
             id="cardImage"
@@ -73,8 +77,9 @@ class Form extends Component {
             testid="image-input"
             value={ cardImage }
             onChange={ onInputChange }
+            className="attr1"
           />
-          <label htmlFor="cardRare">
+          <label htmlFor="cardRare" className="card-rare">
             Raridade
             <select
               id="cardRare"
@@ -102,6 +107,7 @@ class Form extends Component {
             data-testid="save-button"
             disabled={ isSaveButtonDisabled }
             onClick={ onSaveButtonClick }
+            className={ isSaveButtonDisabled ? 'sv-disabled' : 'sv-btn' }
           >
             Salvar
           </button>

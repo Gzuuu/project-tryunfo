@@ -6,7 +6,7 @@ class TrunfoFilter extends Component {
     const { cardFilter, checked } = this.props;
     return (
       <div>
-        <label htmlFor="trunfoCheck">
+        <label htmlFor="trunfoCheck" className="filter-trunfo">
           Super Trunfo
           <input
             type="checkbox"

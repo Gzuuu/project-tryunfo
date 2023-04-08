@@ -100,8 +100,9 @@ class App extends React.Component {
       cardRarity, trunfoCheck, disabled } = this.state;
     return (
       <div>
-        <h1>Tryunfo</h1>
+        <h1 className="page-title">Tryunfo Project</h1>
         <div className="form-container">
+          <h2 className="h2">Adicione uma carta</h2>
           <Form
             cardName={ cardName }
             cardDescription={ cardDescription }
@@ -116,29 +117,35 @@ class App extends React.Component {
             onSaveButtonClick={ this.onSaveButtonClick }
             hasTrunfo={ hasTrunfo }
           />
-          <Card
-            cardName={ cardName }
-            cardDescription={ cardDescription }
-            cardAttr1={ cardAttr1 }
-            cardAttr2={ cardAttr2 }
-            cardAttr3={ cardAttr3 }
-            cardImage={ cardImage }
-            cardRare={ cardRare }
-            cardTrunfo={ cardTrunfo }
-          />
+          <h2 className="pre-title">Pré-Visualização</h2>
+          <div className="pre-visualizacao">
+            <Card
+              cardName={ cardName }
+              cardDescription={ cardDescription }
+              cardAttr1={ cardAttr1 }
+              cardAttr2={ cardAttr2 }
+              cardAttr3={ cardAttr3 }
+              cardImage={ cardImage }
+              cardRare={ cardRare }
+              cardTrunfo={ cardTrunfo }
+            />
+          </div>
         </div>
-        <div>
+        <div className="filters">
+          <p>Filtros de busca</p>
           <NameFilter cardFilter={ this.cardFilter } disabled={ disabled } />
           <RarityFilter cardFilter={ this.cardFilter } disabled={ disabled } />
           <TrunfoFilter cardFilter={ this.cardFilter } checked={ trunfoCheck } />
         </div>
-        <AllCards
-          cards={ allCard }
-          deleteCard={ this.deleteCard }
-          cardFilter={ cardFilter }
-          rarityFilter={ cardRarity }
-          trunfoFilter={ trunfoCheck }
-        />
+        <div className="all-cards">
+          <AllCards
+            cards={ allCard }
+            deleteCard={ this.deleteCard }
+            cardFilter={ cardFilter }
+            rarityFilter={ cardRarity }
+            trunfoFilter={ trunfoCheck }
+          />
+        </div>
       </div>
     );
   }

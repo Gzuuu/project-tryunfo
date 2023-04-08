@@ -7,14 +7,15 @@ class RarityFilter extends Component {
     return (
       <div>
         <label htmlFor="cardRarity">
-          Raridade da carta
           <select
             id="cardRarity"
             onChange={ cardFilter }
             defaultValue="todas"
             data-testid="rare-filter"
             disabled={ disabled }
+            className="filter-rare"
           >
+            <option value="todas">Raridade</option>
             <option value="todas">todas</option>
             <option value="normal">normal</option>
             <option value="raro">raro</option>

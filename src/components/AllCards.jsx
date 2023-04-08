@@ -6,7 +6,7 @@ class AllCards extends Component {
   render() {
     const { cards, deleteCard, cardFilter, rarityFilter, trunfoFilter } = this.props;
     return (
-      <div>
+      <div className="saved-cards">
         {cards
           .filter((card) => card.cardName.includes(cardFilter))
           .filter((card) => ((rarityFilter === 'todas')
@@ -29,24 +29,26 @@ class AllCards extends Component {
               cardTrunfo,
             } = card;
             const eachCard = (
-              <div key={ index }>
-                <Card
-                  cardName={ cardName }
-                  cardDescription={ cardDescription }
-                  cardAttr1={ cardAttr1 }
-                  cardAttr2={ cardAttr2 }
-                  cardAttr3={ cardAttr3 }
-                  cardImage={ cardImage }
-                  cardRare={ cardRare }
-                  cardTrunfo={ cardTrunfo }
-                />
-                <button
-                  type="button"
-                  data-testid="delete-button"
-                  onClick={ () => deleteCard(card, index) }
-                >
-                  Excluir
-                </button>
+              <div className="each-card-container">
+                <div key={ index } className="each-card">
+                  <Card
+                    cardName={ cardName }
+                    cardDescription={ cardDescription }
+                    cardAttr1={ cardAttr1 }
+                    cardAttr2={ cardAttr2 }
+                    cardAttr3={ cardAttr3 }
+                    cardImage={ cardImage }
+                    cardRare={ cardRare }
+                    cardTrunfo={ cardTrunfo }
+                  />
+                  <button
+                    type="button"
+                    data-testid="delete-button"
+                    onClick={ () => deleteCard(card, index) }
+                  >
+                    Excluir
+                  </button>
+                </div>
               </div>);
             return eachCard;
           })}

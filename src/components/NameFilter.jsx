@@ -7,14 +7,14 @@ class NameFilter extends Component {
     return (
       <div>
         <label htmlFor="cardFilter">
-          Nome da Carta
           <input
             type="text"
             id="cardFilter"
             data-testid="name-filter"
-            placeholder="Ex: Pikachu..."
+            placeholder="Nome da Carta"
             onChange={ cardFilter }
             disabled={ disabled }
+            className="filter-name"
           />
         </label>
       </div>
