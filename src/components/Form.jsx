@@ -37,7 +37,7 @@ class Form extends Component {
             <textarea
               id="cardDescription"
               cols="30"
-              rows="10"
+              rows="4"
               data-testid="description-input"
               value={ cardDescription }
               onChange={ onInputChange }
