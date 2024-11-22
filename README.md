@@ -8,7 +8,7 @@ O **Tryunfo** é uma simulação do famoso jogo de cartas "Trunfo", criado como 
 ## Como Rodar o Projeto
 1. Clone o repositório:
    ```bash
-   git clone https://github.com/Gzuuu/project-tryunfo.git
+   git clone https://github.com/Gzuuu/tryunfo.git
    ```
 2. Acesse a pasta do projeto:
    ```bash
